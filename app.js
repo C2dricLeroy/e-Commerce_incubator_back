@@ -1,9 +1,10 @@
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+const sequelize = require('./src/config/database');
 
 const app = express();
 const port = 3000;
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
 
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
