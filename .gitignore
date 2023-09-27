@@ -1,0 +1,28 @@
+# Dossiers Node.js
+node_modules/
+
+# Fichiers d'environnement
+.env
+
+# Fichiers de journalisation
+logs/
+*.log
+
+# Fichiers de sauvegarde
+*.swp
+*.swo
+
+# Fichiers de configuration pour Visual Studio Code
+.idea/
+
+# Fichiers de sauvegarde pour éditeurs de texte
+*~
+
+# Fichiers de build
+/build
+
+# Dépendances de package-lock.json
+/package-lock.json
+
+# Fichiers temporaires
+.tmp/
