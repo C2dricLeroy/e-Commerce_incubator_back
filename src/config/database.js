@@ -1,6 +1,5 @@
 const { Sequelize } = require('sequelize');
 
-// Remplacez ces valeurs par les informations de votre base de données PostgreSQL
 const databaseName = 'postgres';
 const databaseUser = 'e-commerce';
 const databasePassword = 'e-commerce';

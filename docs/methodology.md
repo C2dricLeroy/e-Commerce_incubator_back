@@ -13,3 +13,8 @@
 11. Setup Next.js
 12. Seed Database with products
 13. Update MCD with a table for product-type 
+14. Setup Swagger
+15. Setup Sequelize
+16. Setup Models
+17. Implements user creation
+18. 

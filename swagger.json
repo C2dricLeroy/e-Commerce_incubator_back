@@ -10,6 +10,31 @@
       "post": {
         "summary": "Créer un utilisateur",
         "description": "Création d'un utilisateur à partir de son mail, son username, et son password",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "formData",
+            "description": "Le nom d'utilisateur de l'utilisateur",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "L'adresse e-mail de l'utilisateur",
+            "required": true,
+            "type": "string",
+            "format": "email"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Le mot de passe de l'utilisateur",
+            "required": true,
+            "type": "string",
+            "format": "password"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Liste des utilisateurs"
