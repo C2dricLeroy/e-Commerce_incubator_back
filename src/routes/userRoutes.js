@@ -7,4 +7,6 @@ router.post('/users', async (req, res) => {
   await userController.createUser(req, res);
 });
 
-module.exports = router;
+router.get('/', async (req, res) => {
+  console.log('hello');
+});

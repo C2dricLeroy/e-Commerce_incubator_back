@@ -1,0 +1,43 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "SuperMercado API",
+    "description": "API pour un site e-commerce",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users/create": {
+      "post": {
+        "summary": "Créer un utilisateur",
+        "description": "Création d'un utilisateur à partir de son mail, son username, et son password",
+        "responses": {
+          "200": {
+            "description": "Liste des utilisateurs"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "login",
+        "description": "Login d'un utilisateur à partir de son password et son email",
+        "responses": {
+          "200": {
+            "description": "Liste des utilisateurs"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "summary": "Récupère la liste des produits",
+        "description": "Récupère la liste complète des produits disponibles sur le site e-commerce.",
+        "responses": {
+          "200": {
+            "description": "Liste des produits"
+          }
+        }
+      }
+    }
+  }
+}
