@@ -9,10 +9,9 @@ Le projet est réalisé avec la stack technique suivante :
 - PostgreSQL
 - Docker
 - Tailwind.css
-- Kanban
-- Formik
+- Kanban / Trello
 - Yup
-- Axios
+
 
 
 Les spécifications techniques sont décrites dans ce document.
