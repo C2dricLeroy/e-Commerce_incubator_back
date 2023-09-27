@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+
+  postgres:
+    image: postgres:13.5
+    restart: always
+    environment:
+      - POSTGRES_USER=e-commerce
+      - POSTGRES_PASSWORD=e-commerce
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - '5666:5432'
+
+volumes:
+  postgres:
