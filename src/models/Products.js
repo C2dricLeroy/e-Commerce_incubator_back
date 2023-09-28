@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Product = sequelize.define('Products', {
+const Product = sequelize.define('products', {
   product_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -15,18 +15,20 @@ const Product = sequelize.define('Products', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  description: {
+  DESCRIPTION: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  image: {
+  image_path: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  product_type: {
+  product_type_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+}, {
+  timestamps: false,
 });
 
 module.exports = Product;
