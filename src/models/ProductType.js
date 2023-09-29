@@ -14,14 +14,4 @@ const ProductType = sequelize.define('productType', {
   },
 });
 
-ProductType.hasMany(Product, {
-  foreignKey: 'product_type_id',
-});
-
-Product.belongsTo(ProductType, {
-  foreignKey: 'product_type_id',
-});
-
-sequelize.sync();
-
 module.exports = ProductType;

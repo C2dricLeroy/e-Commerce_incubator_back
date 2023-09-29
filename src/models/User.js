@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const Cart = require('./Cart');
 
 const User = sequelize.define('Users', {
   id: {
@@ -30,6 +31,7 @@ const User = sequelize.define('Users', {
   },
 });
 
-User.sync();
+User.hasMany(Cart, { foreignKey: 'user_id' });
+Cart.belongsTo(User, { foreignKey: 'user_id' });
 
 module.exports = User;

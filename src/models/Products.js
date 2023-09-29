@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const CartItem = require('./CartItem');
 
 const Product = sequelize.define('products', {
   product_id: {
@@ -30,7 +31,5 @@ const Product = sequelize.define('products', {
 }, {
   timestamps: false,
 });
-
-sequelize.sync();
 
 module.exports = Product;
