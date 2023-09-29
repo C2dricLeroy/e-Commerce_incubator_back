@@ -17,4 +17,8 @@
 15. Setup Sequelize
 16. Setup Models
 17. Implements user creation
-18. 
+
+18. Implémenter le front 
+19. Implémenter mes routes produits
+20. Découverte de Sequelize
+21. 
