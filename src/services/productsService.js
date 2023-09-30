@@ -1,4 +1,5 @@
 const Product = require('../models/Products');
+const ProductType = require('../models/ProductType');
 
 class ProductsService {
   static async getProducts(req, res) {
@@ -15,7 +16,7 @@ class ProductsService {
 
   static async getTopProducts(req, res) {
     try {
-      const products = await Product.findAll();
+      const products = await Product.findAll({ include: ProductType });
       const topProducts = await this.defineTopProducts(products);
       res.status(201).json(topProducts);
     } catch (error) {

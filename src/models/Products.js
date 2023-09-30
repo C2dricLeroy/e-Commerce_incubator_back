@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const CartItem = require('./CartItem');
+const ProductType = require('./ProductType');
 
 const Product = sequelize.define('products', {
   product_id: {
@@ -31,5 +32,10 @@ const Product = sequelize.define('products', {
 }, {
   timestamps: false,
 });
+
+Product.hasMany(ProductType, { foreignKey: 'product_type_id' });
+ProductType.belongsTo(Product);
+
+sequelize.sync();
 
 module.exports = Product;
