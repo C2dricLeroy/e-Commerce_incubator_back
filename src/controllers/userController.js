@@ -14,6 +14,15 @@ class UserController {
       res.status(500).json({ error: 'Une erreur s\'est produite.' });
     }
   }
+
+  async loginUser(req, res) {
+    try {
+      await this.userService.loginUser(req, res);
+      res.status(200);
+    } catch (error) {
+      res.status(500).json({ error: 'Une erreur s\'est produite.' });
+    }
+  }
 }
 
 module.exports = UserController;
