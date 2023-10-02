@@ -1,7 +1,8 @@
 const express = require('express');
-const userController = require('../controllers/userController');
+const UserController = require('../controllers/userController');
 
 const router = express.Router();
+const userController = new UserController();
 
 router.post('/create', async (req, res) => {
   await userController.createUser(req, res);

@@ -1,6 +1,4 @@
 const { PrismaClient } = require('@prisma/client');
-const Product = require('../models/Products');
-const ProductType = require('../models/ProductType');
 
 class ProductsService {
   constructor() {

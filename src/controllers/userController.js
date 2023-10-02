@@ -1,9 +1,14 @@
 const userService = require('../services/userService');
+const UserService = require('../services/userService');
 
 class UserController {
-  static async createUser(req, res) {
+  constructor() {
+    this.userService = new UserService();
+  }
+
+  async createUser(req, res) {
     try {
-      await userService.createUser(req, res);
+      await this.userService.createUser(req, res);
       res.status(201);
     } catch (error) {
       res.status(500).json({ error: 'Une erreur s\'est produite.' });

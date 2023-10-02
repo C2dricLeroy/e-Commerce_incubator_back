@@ -1,20 +1,26 @@
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
-const User = require('../models/User');
+const { PrismaClient } = require('@prisma/client');
 
 class UserService {
-  static async createUser(req, res) {
+  constructor() {
+    this.prisma = new PrismaClient();
+  }
+
+  async createUser(req, res) {
     try {
       const { username, email, password } = req.body;
       const date = new Date();
       const uuid = uuidv4();
       const hash = await bcrypt.hash(password, 10);
-      const newUser = await User.create({
-        uuid,
-        username,
-        password: hash,
-        email,
-        datetime: date,
+      const newUser = await this.prisma.user.create({
+        data: {
+          uuid,
+          username,
+          password: hash,
+          email,
+          datetime: date,
+        },
       });
       res.status(201).json(newUser);
     } catch (error) {
