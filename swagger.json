@@ -75,7 +75,7 @@
         }
       }
     },
-    "/catrgory/getAll": {
+    "/category/getAll": {
       "get": {
         "summary": "Récupère la liste des catégories",
         "description": "Récupère la liste complète des catégories (productTypes) avec name et id",

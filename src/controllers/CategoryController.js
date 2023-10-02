@@ -7,10 +7,10 @@ class CategoryController {
 
   async getAll(req, res) {
     try {
-      const categories = await this.categoryService.getAll();
-      res.status(200).json(categories);
+      return await this.categoryService.getAll(req, res);
     } catch (error) {
-      res.status(500).json({ error: 'Une erreur s\'est produite.' });
+      console.log(error.message);
+      return null;
     }
   }
 }
