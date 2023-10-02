@@ -12,4 +12,9 @@ router.get('/getTop', async (req, res) => {
   await productController.getTopProducts(req, res);
 });
 
+router.get('/getOne/:id', async (req, res) => {
+  const productId = req.params.id;
+  await productController.getProductById(req, res, productId);
+});
+
 module.exports = router;

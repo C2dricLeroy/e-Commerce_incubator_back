@@ -23,6 +23,25 @@ class ProductsService {
     }
   }
 
+  async getProductById(req, res, id) {
+    try {
+      const product = await this.prisma.product.findUnique({
+        where: {
+          product_id: +id,
+        },
+        include: {
+          product_type: true,
+        },
+      });
+      res.status(200).json(product);
+      return product;
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json({ error: 'Une erreur s\'est produite lors de la récupération du produit' });
+      return null;
+    }
+  }
+
   async getTopProducts(req, res) {
     try {
       const products = await this.prisma.product.findMany({

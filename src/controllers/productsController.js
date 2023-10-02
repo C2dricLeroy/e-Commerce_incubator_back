@@ -14,6 +14,15 @@ class ProductsController {
     }
   }
 
+  async getProductById(req, res, productId) {
+    try {
+      return await this.productService.getProductById(req, res, productId);
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  }
+
   async getTopProducts(req, res) {
     try {
       return await this.productService.getTopProducts(req, res);
