@@ -64,6 +64,28 @@
         }
       }
     },
+    "/products/getOne/{id}": {
+      "get": {
+        "summary": "Récupère la liste des catégories",
+        "description": "Récupère la liste complète des catégories (productTypes) avec name et id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "L'ID de la catégorie à récupérer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Top produits"
+          }
+        }
+      }
+    },
     "/products/getTop": {
       "get": {
         "summary": "Récupère la liste des produits",
