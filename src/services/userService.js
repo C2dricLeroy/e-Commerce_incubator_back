@@ -2,6 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
 const { PrismaClient } = require('@prisma/client');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 class UserService {
   constructor() {
@@ -63,7 +64,7 @@ class UserService {
   async loginUser(req, res) {
     const { email, password } = req.body;
 
-    const user = await this.user.findOneByEmail(email);
+    const user = await this.findOneByEmail(email);
 
     if (user && (await bcrypt.compare(password, user.password))) {
       const xsrfToken = crypto.randomBytes(64).toString('hex');
