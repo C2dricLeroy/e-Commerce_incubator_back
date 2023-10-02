@@ -1,11 +1,22 @@
+const { PrismaClient } = require('@prisma/client');
 const Product = require('../models/Products');
 const ProductType = require('../models/ProductType');
 
 class ProductsService {
-  static async getProducts(req, res) {
+  constructor() {
+    this.prisma = new PrismaClient();
+  }
+
+  async getProducts(req, res) {
     try {
-      const products = await Product.findAll();
-      res.status(201).json(products);
+      const products = await this.prisma.product.findMany(
+        {
+          include: {
+            product_type: true,
+          },
+        },
+      );
+      res.status(200).json(products);
       return products;
     } catch (error) {
       console.log(error.message);
@@ -14,19 +25,25 @@ class ProductsService {
     }
   }
 
-  static async getTopProducts(req, res) {
+  async getTopProducts(req, res) {
     try {
-      const products = await Product.findAll({ include: ProductType });
-      const topProducts = await this.defineTopProducts(products);
-      res.status(201).json(topProducts);
+      const products = await this.prisma.product.findMany({
+        include: {
+          product_type: true,
+        },
+      });
+      const topProducts = this.defineTopProducts(products);
+      res.status(200).json(topProducts);
+      return topProducts;
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ error: 'Une erreur s\'est produite lors de la récupération des produits' });
+      return null;
     }
   }
 
-  static async defineTopProducts(products) {
-    if (products.length < 3) {
+  defineTopProducts(products) {
+    if (this && products.length < 3) {
       throw new Error("Il n'y a pas suffisamment de produits pour en extraire trois au hasard.");
     }
 

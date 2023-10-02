@@ -53,13 +53,24 @@
         }
       }
     },
-    "/products": {
+    "/products/getAll": {
       "get": {
         "summary": "Récupère la liste des produits",
-        "description": "Récupère la liste complète des produits disponibles sur le site e-commerce.",
+        "description": "Récupère la liste complète des produits ainsi que leur types respectifs.",
         "responses": {
           "200": {
             "description": "Liste des produits"
+          }
+        }
+      }
+    },
+    "/products/getTop": {
+      "get": {
+        "summary": "Récupère la liste des produits",
+        "description": "Récupère la liste complète des produits en tendance ainsi que leur types respectifs.",
+        "responses": {
+          "200": {
+            "description": "Top produits"
           }
         }
       }

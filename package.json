@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@prisma/client": "^5.3.1",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cookie-parser": "~1.4.4",
@@ -16,6 +17,7 @@
     "morgan": "~1.9.1",
     "pg": "^8.11.3",
     "pg-promise": "^11.5.4",
+    "prisma": "^5.3.1",
     "sequelize": "^6.33.0",
     "swagger-ui-express": "^5.0.0",
     "uuid": "^9.0.1"
