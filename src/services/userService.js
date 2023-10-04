@@ -100,6 +100,12 @@ class UserService {
       },
     });
   }
+
+  async logout(req, res) {
+    this.test = '';
+    res.clearCookie('accessToken');
+    res.status(200).json({ message: 'Successfully logged out' });
+  }
 }
 
 module.exports = UserService;

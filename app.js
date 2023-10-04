@@ -2,6 +2,7 @@ const express = require('express');
 
 const swaggerUi = require('swagger-ui-express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const swaggerDocument = require('./swagger.json');
 const userRoutes = require('./src/routes/userRoutes');
 const productsRoutes = require('./src/routes/productsRoutes');
@@ -17,10 +18,16 @@ app.use(bodyParser.urlencoded({
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Spécifiez les méthodes autorisées
-  res.header('Access-Control-Allow-Credentials', 'true'); // Si vous avez besoin de prendre en charge les cookies
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+}));
 
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/users', userRoutes);

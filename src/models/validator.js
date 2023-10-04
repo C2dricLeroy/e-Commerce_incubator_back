@@ -12,4 +12,9 @@ const userSchema = yup.object({
     .matches(/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/, 'Le mot de passe doit contenir au moins un caractère spécial.'),
 });
 
-module.exports = userSchema;
+const loginSchema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().required().max(255),
+});
+
+module.exports = { userSchema, loginSchema };
