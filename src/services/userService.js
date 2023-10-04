@@ -77,7 +77,7 @@ class UserService {
       res.cookie('accessToken', token, {
         httpOnly: true,
         secure: false,
-        // maxAge: 86400,
+        maxAge: 86400,
       })
         .status(200).json(user);
       return {
@@ -102,9 +102,17 @@ class UserService {
   }
 
   async logout(req, res) {
-    this.test = '';
-    res.clearCookie('accessToken');
-    res.status(200).json({ message: 'Successfully logged out' });
+    if (this) {
+      res.clearCookie('accessToken');
+      res.status(200).json({ message: 'Successfully logged out' });
+    }
+  }
+
+  async isLoggedIn(req, res) {
+    if (req.cookies.accessToken) {
+      const decoded = jwt.verify(req.cookies.accessToken, process.env.SECRET_KEY);
+      res.status(200).json(decoded);
+    }
   }
 }
 

@@ -16,4 +16,11 @@ router.post('/login', validateRessourceMiddleware(loginSchema), async (req, res)
   await userController.loginUser(req, res);
 });
 
+router.get('/logout', async (req, res) => {
+  await userController.logout(req, res);
+});
+
+router.get('/isLoggedIn', async (req, res) => {
+  await userController.isLoggedIn(req, res);
+});
 module.exports = router;
