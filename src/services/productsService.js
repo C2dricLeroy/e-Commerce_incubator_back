@@ -78,9 +78,18 @@ class ProductsService {
     try {
       const result = await this.prisma.product.findMany({
         where: {
-          name: {
-            contains: slug,
-          },
+          OR: [
+            {
+              name: {
+                startsWith: slug,
+              },
+            },
+            {
+              name: {
+                startsWith: slug.charAt(0).toUpperCase() + slug.slice(1).toLowerCase(),
+              },
+            },
+          ],
         },
       });
       res.status(200).json(result);
