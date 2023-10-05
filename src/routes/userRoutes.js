@@ -12,7 +12,7 @@ router.post('/create', validateRessourceMiddleware(userSchema), async (req, res)
   await userController.createUser(req, res);
 });
 
-router.post('/login', validateRessourceMiddleware(loginSchema), async (req, res) => {
+router.post('/login', async (req, res) => {
   await userController.loginUser(req, res);
 });
 
@@ -20,7 +20,4 @@ router.get('/logout', async (req, res) => {
   await userController.logout(req, res);
 });
 
-router.get('/isLoggedIn', async (req, res) => {
-  await userController.isLoggedIn(req, res);
-});
 module.exports = router;

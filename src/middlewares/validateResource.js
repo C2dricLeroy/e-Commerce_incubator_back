@@ -5,7 +5,7 @@ const validateRessourceMiddleware = (resourceSchema) => async (req, res, next) =
     next();
   } catch (error) {
     console.error(error);
-    res.status(400).json({ error: error.errors.join(', ') });
+    res.status(400);
   }
 };
 

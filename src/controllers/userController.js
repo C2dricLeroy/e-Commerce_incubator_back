@@ -24,16 +24,6 @@ class UserController {
     }
   }
 
-  async isLoggedIn(req, res) {
-    try {
-      await this.userService.isLoggedIn(req, res);
-      res.status(200);
-    } catch (error) {
-      console.log(error.message);
-      res.status(500).json({ error: 'Une erreur s\'est produite.' });
-    }
-  }
-
   async logout(req, res) {
     try {
       await this.userService.logout(req, res);
