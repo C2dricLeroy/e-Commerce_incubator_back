@@ -31,6 +31,15 @@ class ProductsController {
       return null;
     }
   }
+
+  async searchProduct(req, res, slug) {
+    try {
+      return await this.productService.searchProduct(req, res, slug);
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  }
 }
 
 module.exports = ProductsController;

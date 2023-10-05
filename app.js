@@ -2,7 +2,7 @@ const express = require('express');
 
 const swaggerUi = require('swagger-ui-express');
 const bodyParser = require('body-parser');
-const session = require('express-session');
+
 const swaggerDocument = require('./swagger.json');
 const userRoutes = require('./src/routes/userRoutes');
 const productsRoutes = require('./src/routes/productsRoutes');
@@ -22,12 +22,6 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
-
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-}));
 
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/users', userRoutes);

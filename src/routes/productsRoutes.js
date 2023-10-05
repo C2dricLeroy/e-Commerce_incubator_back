@@ -17,4 +17,8 @@ router.get('/getOne/:id', async (req, res) => {
   await productController.getProductById(req, res, productId);
 });
 
+router.get('/search/:id', async (req, res) => {
+  await productController.searchProduct(req, res, req.params.id);
+});
+
 module.exports = router;

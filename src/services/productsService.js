@@ -73,6 +73,24 @@ class ProductsService {
 
     return topProducts;
   }
+
+  async searchProduct(req, res, slug) {
+    try {
+      const result = await this.prisma.product.findMany({
+        where: {
+          name: {
+            contains: slug,
+          },
+        },
+      });
+      res.status(200).json(result);
+      return result;
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json({ error: 'Une erreur s\'est produite lors de la récupération des produits' });
+      return null;
+    }
+  }
 }
 
 module.exports = ProductsService;
