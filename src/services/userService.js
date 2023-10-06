@@ -4,6 +4,8 @@ const { PrismaClient } = require('@prisma/client');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
+const secretKey = process.env.SECRET_KEY;
+
 class UserService {
   constructor() {
     this.prisma = new PrismaClient();
@@ -80,6 +82,10 @@ class UserService {
         secure: false,
         maxAge: 86400,
       });
+
+      req.session.user = user;
+      console.log(req.session);
+
       const responseJson = {
         message: 'Successfully logged in',
         xsrfToken,
@@ -105,10 +111,46 @@ class UserService {
   }
 
   async logout(req, res) {
-    if (this) {
-      res.clearCookie('accessToken');
-      res.status(200).json({ message: 'Successfully logged out' });
+    this.test = '';
+    req.session.destroy((err) => {
+      if (err) {
+        console.error(err);
+      }
+    });
+  }
+
+  async getUsernameById(req, res, id) {
+    try {
+      const user = await this.prisma.user.findUnique({
+        where: {
+          id: +id,
+        },
+        select: {
+          username: true,
+        },
+      });
+      res.status(200).json(user);
+      return user;
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json({ error: 'Une erreur s\'est produite lors de la récuperation de l\'utilisateur' });
+      return null;
     }
+  }
+
+  async isLoggedIn(req, res) {
+    console.log(req);
+
+    /* if (!authToken) {
+      return res.status(401).json({ message: 'Non authentifié' });
+    }
+
+    try {
+      const decodedToken = jwt.verify(authToken, secretKey);
+      return res.status(200).json({ message: 'Authentifié' });
+    } catch (error) {
+      return res.status(401).json({ message: 'Non authentifié' });
+    } */
   }
 }
 

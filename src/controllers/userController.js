@@ -33,6 +33,24 @@ class UserController {
       res.status(500).json({ error: 'Une erreur s\'est produite.' });
     }
   }
+
+  async getUsernameById(req, res, id) {
+    try {
+      return await this.userService.getUsernameById(req, res, id);
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  }
+
+  async isLoggedIn(req, res) {
+    try {
+      return await this.userService.isLoggedIn(req, res);
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  }
 }
 
 module.exports = UserController;
