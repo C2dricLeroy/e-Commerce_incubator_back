@@ -13,13 +13,10 @@ router.post('/create', validateRessourceMiddleware(userSchema), async (req, res)
 
 router.post('/login', async (req, res) => {
   await userController.loginUser(req, res);
-  console.log('session crée');
 });
 
 router.get('/logout', async (req, res) => {
   await userController.logout(req, res);
-  console.log('session détruite');
-  console.log(req.session);
 });
 
 router.get('/isLoggedIn', async (req, res) => {

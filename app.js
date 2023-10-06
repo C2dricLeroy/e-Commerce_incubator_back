@@ -4,6 +4,7 @@ const swaggerUi = require('swagger-ui-express');
 const bodyParser = require('body-parser');
 
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const swaggerDocument = require('./swagger.json');
 const userRoutes = require('./src/routes/userRoutes');
 const productsRoutes = require('./src/routes/productsRoutes');
@@ -12,17 +13,21 @@ const categoryRoutes = require('./src/routes/categoryRoutes');
 const app = express();
 const port = 3005;
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true,
 }));
 
-app.use(session({
+/* app.use(session({
   secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false },
-}));
+  cookie: {
+    secure: false,
+    maxAge: 86400,
+  },
+})); */
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');

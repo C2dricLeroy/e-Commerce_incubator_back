@@ -70,7 +70,7 @@ class UserService {
 
     if (user && (await bcrypt.compare(password, user.password))) {
       const xsrfToken = crypto.randomBytes(64).toString('hex');
-      const token = jwt.sign({}, process.env.SECRET_KEY, {
+      const token = jwt.sign({ user }, process.env.SECRET_KEY, {
         algorithm: 'HS256',
         audience: 'myApp',
         expiresIn: 86400,
@@ -78,13 +78,11 @@ class UserService {
       });
 
       res.cookie('accessToken', token, {
-        httpOnly: true,
         secure: false,
         maxAge: 86400,
       });
 
-      req.session.user = user;
-      console.log(req.session);
+      /* req.session.user = user; */
 
       const responseJson = {
         message: 'Successfully logged in',
@@ -139,18 +137,17 @@ class UserService {
   }
 
   async isLoggedIn(req, res) {
-    console.log(req);
-
-    /* if (!authToken) {
-      return res.status(401).json({ message: 'Non authentifié' });
-    }
-
     try {
-      const decodedToken = jwt.verify(authToken, secretKey);
-      return res.status(200).json({ message: 'Authentifié' });
+      const token = req.cookies.accessToken;
+
+      if (token) {
+        const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+        return res.status(200).json({ message: 'authentifié', userData: decodedToken });
+      }
+      return res.status(401).json({ message: 'non authentifié' });
     } catch (error) {
-      return res.status(401).json({ message: 'Non authentifié' });
-    } */
+      return res.status(401).json({ message: 'erreur de vérification du token' });
+    }
   }
 }
 

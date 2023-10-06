@@ -1,10 +1,14 @@
-const session = require('express-session');
+const jwt = require('jsonwebtoken');
 
-function isAuthenticated(req, res, next) {
-  if (req.session && req.session.user) {
-    return next();
+async function isAuthenticated(req, res, next) {
+  const token = req.cookies.accessToken;
+  try {
+    if (!token) {
+      return res.status(401).json('You need to Login');
+    } next();
+  } catch (err) {
+    return res.status(500).json(err.toString());
   }
-  return res.redirect('/login');
 }
 
 module.exports = isAuthenticated;
