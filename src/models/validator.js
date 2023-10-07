@@ -17,4 +17,9 @@ const loginSchema = yup.object({
   password: yup.string().required().max(255),
 });
 
-module.exports = { userSchema, loginSchema };
+const cartSchema = yup.object({
+  cart_name: yup.string().required(),
+  user_id: yup.number().required(),
+});
+
+module.exports = { userSchema, loginSchema, cartSchema };

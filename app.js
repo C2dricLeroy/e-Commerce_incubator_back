@@ -9,6 +9,7 @@ const swaggerDocument = require('./swagger.json');
 const userRoutes = require('./src/routes/userRoutes');
 const productsRoutes = require('./src/routes/productsRoutes');
 const categoryRoutes = require('./src/routes/categoryRoutes');
+const cartRoutes = require('./src/routes/cartRoutes');
 
 const app = express();
 const port = 3005;
@@ -41,6 +42,7 @@ app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/users', userRoutes);
 app.use('/products', productsRoutes);
 app.use('/category', categoryRoutes);
+app.use('/cart', cartRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
