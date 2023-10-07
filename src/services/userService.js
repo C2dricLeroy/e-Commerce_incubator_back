@@ -4,8 +4,6 @@ const { PrismaClient } = require('@prisma/client');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
-const secretKey = process.env.SECRET_KEY;
-
 class UserService {
   constructor() {
     this.prisma = new PrismaClient();
