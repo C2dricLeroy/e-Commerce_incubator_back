@@ -149,6 +149,19 @@ class UserService {
       return res.status(401).json({ message: 'erreur de vérification du token' });
     }
   }
+
+  async deleteUser(req, res, id) {
+    try {
+      return await this.prisma.user.delete({
+        where: {
+          id: +id,
+        },
+      });
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  }
 }
 
 module.exports = UserService;
