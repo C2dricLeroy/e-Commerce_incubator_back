@@ -18,8 +18,8 @@ class CartController {
 
   async saveCart(req, res) {
     try {
-      await this.cartService.saveCart(req, res);
-      res.status(200);
+      const cart = await this.cartService.saveCart(req, res);
+      res.status(200).json(cart);
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ error: 'Une erreur s\'est produite.' });

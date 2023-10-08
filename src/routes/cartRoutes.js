@@ -1,7 +1,7 @@
 const express = require('express');
 const CartController = require('../controllers/cartController');
 const validateRessourceMiddleware = require('../middlewares/validateResource');
-const cartSchema = require('../models/validator');
+const { cartSchema } = require('../models/validator');
 const isAuthenticated = require('../middlewares/authentication');
 
 const router = express.Router();
@@ -14,3 +14,5 @@ router.get('/getUserCart/:id', isAuthenticated, async (req, res) => {
 router.post('/saveCart', validateRessourceMiddleware(cartSchema), async (req, res) => {
   await cartController.saveCart(req, res);
 });
+
+module.exports = router;
