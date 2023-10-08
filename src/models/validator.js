@@ -22,4 +22,12 @@ const cartSchema = yup.object({
   user_id: yup.number().required(),
 });
 
-module.exports = { userSchema, loginSchema, cartSchema };
+const cartItemSchema = yup.object({
+  cart_id: yup.number().required(),
+  product_id: yup.number().required(),
+  quantity: yup.number().required(),
+});
+
+module.exports = {
+  userSchema, loginSchema, cartSchema, cartItemSchema,
+};

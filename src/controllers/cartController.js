@@ -12,7 +12,6 @@ class CartController {
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ error: 'Une erreur s\'est produite.' });
-      return null;
     }
   }
 
