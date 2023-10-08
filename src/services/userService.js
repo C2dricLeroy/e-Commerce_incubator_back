@@ -65,19 +65,21 @@ class UserService {
     const { email, password } = req.body;
 
     const user = await this.findOneByEmail(email);
+    const expirationDate = new Date();
+    expirationDate.setTime(expirationDate.getTime() + 86400 * 1000);
 
     if (user && (await bcrypt.compare(password, user.password))) {
       const xsrfToken = crypto.randomBytes(64).toString('hex');
       const token = jwt.sign({ user }, process.env.SECRET_KEY, {
         algorithm: 'HS256',
         audience: 'myApp',
-        expiresIn: 86400,
+        expiresIn: expirationDate,
         issuer: 'myIssuer',
       });
 
       res.cookie('accessToken', token, {
         secure: false,
-        maxAge: 86400,
+        expires: expirationDate,
       });
 
       /* req.session.user = user; */
