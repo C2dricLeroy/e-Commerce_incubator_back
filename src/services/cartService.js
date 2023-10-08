@@ -7,9 +7,20 @@ class CartService {
 
   async getUserCart(req, res, id) {
     try {
-      return await this.prisma.cart.findUnique({
+      return await this.prisma.user.findUnique({
         where: {
           id: +id,
+        },
+        include: {
+          cart: {
+            include: {
+              cart_item: {
+                include: {
+                  product: true,
+                },
+              },
+            },
+          },
         },
       });
     } catch (error) {
