@@ -15,4 +15,12 @@ router.post('/save', validateRessourceMiddleware(cartItemSchema), async (req, re
   await cartItemController.save(req, res);
 });
 
+router.put('/update', isAuthenticated, validateRessourceMiddleware(cartItemSchema), async (req, res) => {
+  await cartItemController.updateCartItem(req, res);
+});
+
+router.delete('/:id', isAuthenticated, async (req, res) => {
+  await cartItemController.deleteCartItemById(req, res, req.params.id);
+});
+
 module.exports = router;

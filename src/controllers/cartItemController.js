@@ -24,6 +24,26 @@ class cartItemController {
       res.status(500).json({ error: 'Une erreur s\'est produite.' });
     }
   }
+
+  async deleteCartItemById(req, res, id) {
+    try {
+      const response = await this.cartItemService.deleteCartItemById(req, res, id);
+      res.status(200).json(response);
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json({ error: 'Une erreur s\'est produite.' });
+    }
+  }
+
+  async updateCartItem(req, res) {
+    try {
+      const response = await this.cartItemService.updateCartItem(req, res);
+      res.status(200).json(response);
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json({ error: 'Une erreur s\'est produite.' });
+    }
+  }
 }
 
 module.exports = cartItemController;
