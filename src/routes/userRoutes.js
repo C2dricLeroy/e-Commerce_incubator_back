@@ -28,7 +28,7 @@ router.get('/getUsernameById/:id', isAuthenticated, async (req, res) => {
   await userController.getUsernameById(req, res, req.params.id);
 });
 
-router.get('/delete/:id', isAuthenticated, async (req, res) => {
+router.delete('/delete/:id', isAuthenticated, async (req, res) => {
   await userController.deleteUser(req, res, req.params.id);
 });
 

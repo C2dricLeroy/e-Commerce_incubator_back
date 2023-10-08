@@ -54,10 +54,11 @@ class UserController {
 
   async deleteUser(req, res, id) {
     try {
-      return await this.userService.deleteUser(req, res, id);
+      await this.userService.deleteUser(req, res, id);
+      res.status(200);
     } catch (error) {
       console.log(error.message);
-      return null;
+      res.status(500).json({ error: 'Une erreur s\'est produite.' });
     }
   }
 }
