@@ -53,7 +53,14 @@ class UserService {
             datetime: date,
           },
         });
-        res.status(201).json(newUser);
+
+        const newUserWithoutCredentials = {
+          id: newUser.id,
+          uuid: newUser.uuid,
+          username: newUser.username,
+        };
+
+        res.status(201).json(newUserWithoutCredentials);
       } catch (error) {
         console.log(error.message);
         res.status(500).json({ error: 'Une erreur s\'est produite lors de la création de l\'utilisateur' });

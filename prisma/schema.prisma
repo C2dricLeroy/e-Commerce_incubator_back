@@ -43,7 +43,7 @@ model Cart {
   user_id   Int
   datetime  DateTime
   cart_item CartItem[]
-  user      User       @relation(fields: [user_id], references: [id])
+  user      User       @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model CartItem {
@@ -51,6 +51,6 @@ model CartItem {
   cart_id      Int
   product_id   Int
   quantity     Int
-  cart         Cart    @relation(fields: [cart_id], references: [cart_id])
-  product      Product @relation(fields: [product_id], references: [product_id])
+  cart         Cart    @relation(fields: [cart_id], references: [cart_id], onDelete: Cascade)
+  product      Product @relation(fields: [product_id], references: [product_id], onDelete: Cascade)
 }
