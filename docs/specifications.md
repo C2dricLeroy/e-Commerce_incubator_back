@@ -7,16 +7,14 @@ Ce document a pour but de rassembler les spécifications techniques et fonctionn
 
 ### UML
 
-Je décide de ne pas m'encombrer d'un diagramme de classe, cependant plusieurs classes peuvent être relevées:
-- Application
-- Product
-- User
-  - login(email, password)
-  - create(username, password, email)
-  - forgotPassword()
-  - updateName(name)
-- Cart
+Aucun diagramme UMl n'a été fait pour ce projet. Cependant, des classes se sont dessinées : 
 - CartItem
+- Cart
+- Category
+- Products
+- Users
+
+Chaque class a été découpée en controller et services dans le code, permettant une séparation des preoccupations. 
 
 ### Merise
 
